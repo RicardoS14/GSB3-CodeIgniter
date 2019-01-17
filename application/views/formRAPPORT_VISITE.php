@@ -47,20 +47,31 @@
     </script>
 </head>
 <body>
-<div name="haut" style="margin: 2 2 2 2 ;height:6%;"><h1><img src="logo.jpg" width="100" height="60"/>Gestion des visites</h1></div>
+<div name='haut' style='margin: 2 2 2 2 ;height:6%;'>
+<?php  
+$img_logo = array(
+		'src' => 'logo.jpg',
+		'width' => '100',
+		'height' => '60'
+);
+
+echo heading(img($img_logo), 'Gestion des visites',1);
+?></div>
 <div name="gauche" style="float:left;width:18%; background-color:white; height:100%;">
-	<h2>Outils</h2>
-	<ul><li>Comptes-Rendus</li>
-		<ul>
-			<li><a href="formRAPPORT_VISITE.php" >Nouveaux</a></li>
-			<li>Consulter</li>
-		</ul>
-		<li>Consulter</li>
-		<ul><li><a href="formMEDICAMENT.php" >Médicaments</a></li>
-			<li><a href="formPRATICIEN.php" >Praticiens</a></li>
-			<li><a href="formVISITEUR.php" >Autres visiteurs</a></li>
-		</ul>
-	</ul>
+	<?php echo heading('Outils',2);
+	$list_comptes_rendus = array(
+			'Comptes-Rendus' => array(
+					anchor('formRAPPORT_VISITE.php','Nouveaux'),
+					'Consulter'
+		),
+			'Consulter' => array(
+					anchor('formMEDICAMENT.php', 'Médicaments'),
+					anchor('formPRATICIEN.php', 'Praticiens'),
+					anchor('formVISITEUR.php', 'Autres visiteurs')
+		),
+	);
+	echo ul($list_comptes_rendus)
+?>
 </div>
 <div name="droite" style="float:left;width:80%;">
 	<div name="bas" style="margin : 10 2 2 2;clear:left;background-color:77AADD;color:white;height:88%;">
