@@ -32,7 +32,6 @@
 
         <h3>Échantillons</h3>
         <select name="medic" value="<?=$med['MED_DEPOTLEGAL']?>">
-            <option value="">Ne rien sélectionner</option>
             <?php foreach ($LesMedicaments as $key => $med):?>
                 <option value="<?=$med["MED_DEPOTLEGAL"]?>"><?=$med["MED_DEPOTLEGAL"].' '.$med["MED_NOMCOMMERCIAL"].' '.$med["Fam_code"].' '.$med["FAM_LIBELLE"].' '.$med["MED_PRIXECHANTILLON"]?></option>
             <?php endforeach; ?>
