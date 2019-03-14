@@ -25,14 +25,14 @@ class C_CompteRendu extends CI_Controller{
         $max = $pdo->getNewId();
         $max++;
         if ($_REQUEST['medic'] == "") {
-            $pdo->ajouterCR($_SESSION['vis_matricule'], $max, $_POST["pra"], $_POST["bilan"], $_POST["motif"], $_POST["date"]);
-            $lesCompteRendu = $pdo->getCR($_SESSION['vis_matricule']);
+            $pdo->ajouterCR($this->session->unset_userdata('vis_matricule'), $max, $this->input->post("pra"), $this->input->post("bilan"), $this->input->post("motif"), $this->input->post("date"));
+            $lesCompteRendu = $pdo->getCR($this->session->unset_userdata('vis_matricule'));
             $this->load->view('v_consulterCompte');
         }
         elseif ($_REQUEST['medic'] == $_POST['medic']) {
             if (!isset($_POST['quantite']) || $_POST['quantite']==0 ) {
-                $pdo->ajouterCR($_SESSION['vis_matricule'], $max, $_POST["pra"], $_POST["bilan"], $_POST["motif"], $_POST["date"]);
-                $lesCompteRendu = $pdo->getCR($_SESSION['vis_matricule']);
+                $pdo->ajouterCR($this->session->unset_userdata('vis_matricule'), $max, $this->input->post("pra"), $this->input->post("bilan"), $this->input->post("motif"), $this->input->post("date"));
+                $lesCompteRendu = $pdo->getCR($this->session->unset_userdata('vis_matricule'));
                 $this->load->view('v_consulterCompte');
             }?>
             <div>
@@ -40,14 +40,14 @@ class C_CompteRendu extends CI_Controller{
                 <h6>Le rapport <?= $max; ?> a bien été crée.</h6>
             </div>
             <?php
-            $pdo->ajouterCR($_SESSION['vis_matricule'], $max, $_POST["pra"], $_POST["bilan"], $_POST["motif"], $_POST["date"]);
-            $lesCompteRendu = $pdo->getCR($_SESSION['vis_matricule']);
-            $pdo->ajouterEchantillon($_SESSION['vis_matricule'], $max, $_POST['medic'], $_POST['quantite']);
+            $pdo->ajouterCR($this->session->unset_userdata('vis_matricule'), $max, $_POST["pra"], $_POST["bilan"], $_POST["motif"], $_POST["date"]);
+            $lesCompteRendu = $pdo->getCR($this->session->unset_userdata('vis_matricule'));
+            $pdo->ajouterEchantillon($this->session->unset_userdata('vis_matricule'), $max, $_POST['medic'], $_POST['quantite']);
             $this->load->view('v_consulterCompte');
         }
     }
     public function consulterCR() {
-        $lesCompteRendu = $pdo->getCR($_SESSION['vis_matricule']);
+        $lesCompteRendu = $pdo->getCR($this->session->unset_userdata('vis_matricule'));
         $this->load->view('v_consulterCompte');
     }
     public function details(){
