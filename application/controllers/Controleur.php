@@ -23,10 +23,5 @@ class Controleur extends CI_Controller{
 		$this->load->view('Templace', $data);
 	}
 
-	function accueil(){
-		$this->session->unset_userdata('user');
-		$data['content'] = "bas";
-		$this->load->view('Templace', $data);
-	}
 }
 ?>
